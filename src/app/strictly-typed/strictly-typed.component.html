@@ -1,0 +1,80 @@
+<div style="margin:1rem;padding:1rem;border: 1px solid black;">
+  <h1>Simple FormControl</h1>
+  <label for="email">Email: </label>
+  <input id="email" type="text" [formControl]="email">
+  <p>Value: {{ email.value | json}}</p>
+  <label for="name">Name: </label>
+  <input id="name" type="text" [formControl]="name">
+  <p>Value: {{ name.value | json}}</p>
+  <label for="mobile">mobile: </label>
+  <input id="mobile" type="text" [formControl]="mobile">
+  <p>Value: {{ mobile.value | json}}</p>
+
+
+  <button type="button" (click)="update()">Update</button>
+  <button type="button" (click)="reset()">Reset</button>
+</div>
+<div style="margin:1rem;padding:1rem;border: 1px solid black;">
+  <h1>FormArray</h1>
+  <form [formGroup]="addressGroup">
+    <div formArrayName="address">
+      <div *ngFor="let name of address.controls; let i = index">
+        <input type="text" [formControlName]="i">
+      </div>
+    </div>
+    <button type="button" (click)="formArrayAdd()">Add</button>
+    <button type="button" (click)="formArrayUpdate()">Update</button>
+    <button type="button" (click)="formArrayReset()">Reset</button>
+    <p>Form Value: {{ addressGroup.value | json }}</p>
+
+    <p>Form Status: {{ addressGroup.status }}</p>
+  </form>
+</div>
+<div style="margin:1rem;padding:1rem;border: 1px solid black;">
+  <h1>Sticly FormGroup with Interface</h1>
+  <form [formGroup]="schoolGroup">
+
+    <label for="schoolName">SchoolName: </label>
+    <input id="schoolName" type="text" formControlName="schoolName">
+
+    <label for="studentName">StudentName: </label>
+    <input id="studentName" type="text" formControlName="studentName">
+
+    <label for="rollNo">RollNo: </label>
+    <input id="rollNo" type="text" formControlName="rollNo">
+
+    <label for="age">Age: </label>
+    <input id="age" type="text" formControlName="age">
+
+
+    <p>Value: {{ email.value }}</p>
+    <button type="button" (click)="formGroupUpdate()">Update</button>
+    <button type="button" (click)="formGroupReset()">Reset</button>
+    <p>Form Value: {{ schoolGroup.value | json }}</p>
+
+    <p>Form Status: {{ schoolGroup.status }}</p>
+  </form>
+</div>
+<div style="margin:1rem;padding:1rem;border: 1px solid black;">
+  <h1>Stictly Type FormGroup and FormArray with Interface</h1>
+  <form [formGroup]="studentGroup">
+    <label for="schoolName">School Name: </label>
+    <input formControlName="schoolName" placeholder="School Name">
+    <div formArrayName="student">
+      <div *ngFor="let studentCtrl of student.controls; let i = index" [formGroupName]="i">
+        <label for="schoolName">Student Name: </label>
+        <input formControlName="studentName" placeholder="Student Name">
+        <label for="rollNo">RollNo: </label>
+        <input formControlName="rollNo" placeholder="Roll No">
+        <label for="age">Age: </label>
+        <input formControlName="age" placeholder="Age">
+      </div>
+    </div>
+    <button type="button" (click)="formArrayAddI()">Add</button>
+    <button type="button" (click)="formArrayUpdateI()">Update</button>
+    <button type="button" (click)="formArrayResetI()">Reset</button>
+    <p>Form Value: {{ studentGroup.value | json }}</p>
+
+    <p>Form Status: {{ studentGroup.status }}</p>
+  </form>
+</div>
